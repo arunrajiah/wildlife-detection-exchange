@@ -2,7 +2,9 @@
 
 *An open interchange format for AI wildlife detections from community-run sensors.*
 
-**Status: v0.1 draft, proposed.** The name WDX is provisional until first publication.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22200864.svg)](https://doi.org/10.5281/zenodo.22200864)
+
+**Status: v0.1 draft, published.** Cite all versions via DOI 10.5281/zenodo.22200864; this release is 10.5281/zenodo.22200865.
 
 ## The problem
 

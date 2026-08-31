@@ -8,6 +8,10 @@ authors:
     city: "Chennai"
     country: "IN"
 version: "0.1"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22200864"
+    description: "Concept DOI covering all versions"
 date-released: "2026-08-25"
 license: "CC-BY-4.0"
 repository-code: "https://github.com/arunrajiah/wildlife-detection-exchange"
