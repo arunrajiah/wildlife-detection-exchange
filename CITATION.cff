@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use or reference this specification, please cite it as below."
+title: "Wildlife Detection Exchange (WDX): an open interchange format for AI wildlife detections from community-run sensors"
+type: dataset
+authors:
+  - family-names: "Rajiah"
+    given-names: "Arun"
+    city: "Chennai"
+    country: "IN"
+version: "0.1"
+date-released: "2026-08-25"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/arunrajiah/wildlife-detection-exchange"
+keywords:
+  - bioacoustics
+  - camera traps
+  - biodiversity informatics
+  - Darwin Core
+  - machine observation
+  - BirdNET
+  - Perch
+  - SpeciesNet
+  - data standard
+abstract: >
+  WDX is a lightweight JSON interchange format for machine-generated wildlife
+  detection events from continuous community-run sensors such as BirdNET
+  acoustic stations and AI-classified camera traps. Each event carries taxon,
+  location, time, classifier identity and version, confidence, media reference
+  and human review status, and maps field by field to Darwin Core so that any
+  WDX stream can be exported as a standard occurrence dataset with
+  basisOfRecord MachineObservation and published to GBIF. Version 0.1 is a
+  draft proposal published to anchor community discussion and reference
+  implementations.

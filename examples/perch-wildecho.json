@@ -1,0 +1,40 @@
+{
+  "wdx": "0.1",
+  "eventId": "2b6f0e91-3c44-4a7d-8e02-c7d9a1f45b33",
+  "eventStart": "2026-08-24T23:41:10+03:00",
+  "eventEnd": "2026-08-24T23:41:15+03:00",
+  "deployment": {
+    "deploymentId": "wildecho-tsavo-demo-02",
+    "name": "Field recorder, riverine forest edge",
+    "latitude": -2.9833,
+    "longitude": 38.4667,
+    "coordinateUncertaintyMeters": 100,
+    "sensorType": "acoustic-recorder",
+    "sensorModel": "AudioMoth 1.2"
+  },
+  "detection": {
+    "scientificName": "Cossypha heuglini",
+    "vernacularName": "White-browed Robin-Chat",
+    "taxonRank": "species",
+    "confidence": 0.78,
+    "classifier": { "name": "Perch", "version": "2.0" },
+    "classifiedAt": "2026-08-25T02:10:44+03:00"
+  },
+  "media": {
+    "mediaType": "audio",
+    "url": "https://example.org/recordings/tsavo-02/20260824-2341.flac",
+    "startOffsetSeconds": 70.2,
+    "durationSeconds": 5.0,
+    "sha256": "d1a4f2e8b6c09a7d3e5f8b2a1c4d6e9f0a3b5c7d9e1f2a4b6c8d0e2f4a6b8c0d"
+  },
+  "review": {
+    "status": "confirmed",
+    "reviewedBy": "field-team-2",
+    "reviewedAt": "2026-08-25T09:02:00+03:00"
+  },
+  "source": {
+    "system": "wildecho-api",
+    "systemVersion": "0.3.1",
+    "sourceRecordId": "run-8871/det-042"
+  }
+}

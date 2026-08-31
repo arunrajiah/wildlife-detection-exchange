@@ -1,0 +1,35 @@
+{
+  "wdx": "0.1",
+  "eventId": "9f2c1a4e-7d3b-4b2a-9c1e-5a8d4f6b2e10",
+  "eventStart": "2026-08-25T06:14:03+05:30",
+  "eventEnd": "2026-08-25T06:14:06+05:30",
+  "deployment": {
+    "deploymentId": "birdnetpi-chitlapakkam-01",
+    "latitude": 12.92,
+    "longitude": 80.14,
+    "coordinateUncertaintyMeters": 5000,
+    "sensorType": "acoustic-recorder",
+    "sensorModel": "Raspberry Pi 4 + Clippy EM272"
+  },
+  "detection": {
+    "scientificName": "Orthotomus sutorius",
+    "vernacularName": "Common Tailorbird",
+    "taxonRank": "species",
+    "taxonId": "ebird:comtai1",
+    "confidence": 0.91,
+    "classifier": { "name": "BirdNET", "version": "2.4" }
+  },
+  "media": {
+    "mediaType": "audio",
+    "fileName": "2026-08-25-birdnet-06:14:03.wav",
+    "startOffsetSeconds": 0,
+    "durationSeconds": 3
+  },
+  "review": { "status": "unreviewed" },
+  "source": {
+    "system": "birdnet-pi",
+    "systemVersion": "0.13",
+    "sourceRecordId": "detections.db#184223"
+  },
+  "license": "CC-BY-4.0"
+}
