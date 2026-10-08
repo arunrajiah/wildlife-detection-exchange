@@ -1,0 +1,32 @@
+{
+  "wdx": "0.2",
+  "eventId": "speciesnet:cam07:IMG_0423.JPG:0",
+  "eventStart": "2026-09-14T05:42:10+05:30",
+  "deployment": {
+    "deploymentId": "cam07",
+    "latitude": 11.58,
+    "longitude": 76.54,
+    "coordinateUncertaintyMeters": 1000,
+    "sensorType": "camera-trap",
+    "sensorModel": "Browning BTC-8E"
+  },
+  "detection": {
+    "scientificName": "Panthera pardus",
+    "vernacularName": "Leopard",
+    "taxonRank": "species",
+    "confidence": 0.93,
+    "classifier": { "name": "SpeciesNet", "version": "4.0.1a" },
+    "pipeline": [
+      { "role": "detector", "name": "MegaDetector", "version": "5a", "weights": "https://github.com/agentmorris/MegaDetector/releases/download/v5.0/md_v5a.0.0.pt" },
+      { "role": "classifier", "name": "SpeciesNet", "version": "4.0.1a" }
+    ]
+  },
+  "media": {
+    "mediaType": "image",
+    "fileName": "IMG_0423.JPG",
+    "region": { "type": "box", "coordinates": [0.412, 0.338, 0.221, 0.287], "units": "normalized" }
+  },
+  "review": { "status": "unreviewed" },
+  "source": { "system": "speciesnet", "systemVersion": "4.0.1a", "sourceRecordId": "IMG_0423.JPG:0" },
+  "license": "CC-BY-4.0"
+}
