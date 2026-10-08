@@ -31,6 +31,8 @@ This document maps every WDX field with a Darwin Core (DwC) equivalent to its te
 | `review.status` | `dwc:identificationVerificationStatus` | `unreviewed`, `confirmed`, `rejected`, `uncertain` map verbatim; `rejected` events SHOULD be excluded from GBIF occurrence export. |
 | `review.reviewedBy` | appended to `dwc:identifiedBy` | Human confirmation supersedes: `BirdNET 2.4 | confirmed by A. Rajiah`. |
 | `media.url` | `dwc:associatedMedia` | Audiovisual Core is the richer path for consumers that support it. |
+| `detection.pipeline` (v0.2) | appended to `dwc:identificationRemarks` | Formatted `pipeline: MegaDetector 5a (detector) > SpeciesNet 4.0.1a (classifier)`. `dwc:identifiedBy` keeps the final `classifier`. |
+| `media.region` (v0.2) | Audiovisual Core `ac:hasROI` / region of interest terms | DwC occurrence records have no region term; keep it in the source WDX or `dwc:dynamicProperties` when exporting plain occurrences. |
 | `source.system` + `systemVersion` | `dwc:institutionCode` is NOT used; put in `dwc:dynamicProperties` | Producing software is provenance, not an institution. `dynamicProperties` example: `{"wdxSource":"birdnet-pi 0.13"}`. |
 | `license` | `dcterms:license` | |
 

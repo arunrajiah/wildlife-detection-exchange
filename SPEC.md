@@ -58,6 +58,7 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 | `confidence` | number | MUST | Classifier score in [0,1] as emitted by the model. Producers MUST NOT rescale. |
 | `classifier` | object | MUST | `{ "name": string, "version": string }`, e.g. `{ "name": "BirdNET", "version": "2.4" }`. The pair MUST identify the model well enough that a consumer can reproduce or discount the identification. |
 | `classifiedAt` | string | MAY | When inference ran, ISO 8601 with offset, if different from `eventStart`. |
+| `pipeline` | array | MAY | *v0.2.* Ordered model steps that produced this detection, first step first, e.g. a detector followed by a classifier. Each step: `role` (free text; suggested `detector`, `classifier`, `filter`, `tracker`), `name`, `version`, and optional `weights` (file hash, model registry id or URL). `classifier` stays required and names the step that produced the label, so v0.1 consumers keep working. Confidence is carried for the final label only. |
 
 ## 6. `media`
 
@@ -69,6 +70,19 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 | `startOffsetSeconds` | number | MAY | Offset of the detection within the file. |
 | `durationSeconds` | number | MAY | Length of the detection window in the file. |
 | `sha256` | string | MAY | Hash of the file, for integrity across moves. |
+| `region` | object | MAY | *v0.2.* Where the detected object is in the image or video frame, for review and auditing. See 6.1. |
+
+### 6.1 `media.region` (v0.2)
+
+One region per event: an image with three animals is three events. WDX carries a region so a detection can be checked against its evidence; it is not meant to replace annotation formats used to store training labels (COCO, Camtrap DP), which a region can be converted to.
+
+| Field | Type | Req | Description |
+|---|---|---|---|
+| `type` | string | MUST | `box`, `polygon` or `point` (for example a centroid). |
+| `coordinates` | array | MUST | `box`: `[x, y, width, height]`, x and y being the top-left corner (as MegaDetector and COCO). `polygon`: `[[x, y], ...]`, at least 3 points. `point`: `[x, y]`. Producers whose tools emit corner pairs (`[xMin, yMin, xMax, yMax]`) convert with width = xMax − xMin and height = yMax − yMin. |
+| `units` | string | MAY | `normalized` (default): fractions 0 to 1 of the image width and height, origin top left. `pixels`: then `imageWidth` and `imageHeight` MUST be given. |
+| `imageWidth`, `imageHeight` | integer | MAY | Image size in pixels. |
+| `frame` | integer | MAY | Video only: the frame index the region refers to. `startOffsetSeconds` MAY be used instead. |
 
 ## 7. `review`
 
@@ -98,4 +112,4 @@ Home-based operators are the majority of the intended producers. Implementations
 
 ## 11. Versioning
 
-The `wdx` field carries the spec version. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.
+The `wdx` field carries the spec version: `"0.1"` or `"0.2"`. Version 0.2 only adds optional fields (`detection.pipeline`, `media.region`), so every v0.1 event is also valid under the v0.2 schema. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.
