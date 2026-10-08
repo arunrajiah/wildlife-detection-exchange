@@ -1,0 +1,13 @@
+{
+  "wdx": "0.2",
+  "kind": "device-status",
+  "deviceId": "wnb_7Kq2xR9mPa",
+  "at": "2026-10-08T06:00:00+05:30",
+  "battery": { "percent": 81, "volts": 13.1, "charging": true },
+  "storage": { "freeMb": 21450, "totalMb": 30500 },
+  "temperatureC": 47.2,
+  "uptimeSeconds": 604800,
+  "network": { "type": "4g", "signalDbm": -87 },
+  "queue": { "pending": 0 },
+  "software": { "wdx-agent": "0.3.0", "wnbase": "0.1.0" }
+}

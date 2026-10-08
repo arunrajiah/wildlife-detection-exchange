@@ -110,6 +110,25 @@ Events with no `review` object are `unreviewed`. A `rejected` event SHOULD still
 
 Home-based operators are the majority of the intended producers. Implementations MUST make coordinate generalisation (section 4) available at the point of publishing, and SHOULD default `deployment.name` to omitted when publishing beyond the operator's own systems.
 
+## 10a. Device status (v0.2)
+
+A device MAY send health reports as a separate record type, validated by `schema/device-status.schema.json`. A status record is not a detection: receivers keep it apart and never show it as an observation.
+
+| Field | Type | Req | Description |
+|---|---|---|---|
+| `wdx` | string | MUST | `"0.2"`. |
+| `kind` | string | MUST | `"device-status"`. |
+| `deviceId` | string | MUST | The device's id at the receiver (for example from a device registry), or the producer's stable station id. |
+| `at` | string | MUST | When the report was taken, ISO 8601 with offset. |
+| `battery` | object | MAY | `percent` (0 to 100), `volts`, `charging`. |
+| `storage` | object | MAY | `freeMb`, `totalMb`. |
+| `temperatureC` | number | MAY | Device or enclosure temperature. |
+| `uptimeSeconds` | integer | MAY | Time since the last start. |
+| `network` | object | MAY | `type` (free text: `4g`, `wifi`, `ethernet`, `lora`, `none`) and `signalDbm`. |
+| `queue` | object | MAY | `pending`: detections recorded but not yet delivered. |
+| `software` | object | MAY | Component name to version string. |
+| `location` | object | MAY | `latitude`, `longitude`. Producers SHOULD leave it out unless the receiver needs it; the same privacy rules as `deployment` apply. |
+
 ## 11. Versioning
 
 The `wdx` field carries the spec version: `"0.1"` or `"0.2"`. Version 0.2 only adds optional fields (`detection.pipeline`, `media.region`), so every v0.1 event is also valid under the v0.2 schema. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.
