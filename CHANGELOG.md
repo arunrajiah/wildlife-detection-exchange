@@ -6,6 +6,9 @@
 - `detection.individualCount`: number of individuals reported.
 - `source.provider`: the contributing platform inside an aggregating source.
 - `source.trusted`: the source's own verification flag, passed through.
+- `source.providerUrl`, `source.occurrenceId`, `source.institutionCode`: credit links and cross-aggregator deduplication (OBIS and GBIF publish many of the same occurrences).
+- `taxonRank` adds `order` (e.g. a hydrophone detection identified only as Cetacea).
+- `confidence` is omitted, not invented, when a relaying system does not expose the model score (e.g. OrcaHello detections relayed by Orcasound).
 - Scope widened to human observations shown beside machine detections.
 - Backward compatible: every v0.1 and v0.2 event validates against the v0.3 schema.
 

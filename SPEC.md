@@ -53,11 +53,11 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 |---|---|---|---|
 | `scientificName` | string | SHOULD | Binomial (or higher-rank name) as output by the classifier's taxonomy, e.g. `"Orthotomus sutorius"`. MAY be omitted only when the classifier emits no taxon (e.g. MegaDetector's `animal` class), in which case `taxonRank` MUST be `"unranked"` and `vernacularName` SHOULD carry the class label. |
 | `vernacularName` | string | MAY | Common name as output, e.g. `"Common Tailorbird"`. |
-| `taxonRank` | string | MAY | `species`, `genus`, `family`, `class`, `unranked`. Default `species`. |
+| `taxonRank` | string | MAY | `species`, `genus`, `family`, `order` (v0.3), `class`, `unranked`. Default `species`. |
 | `taxonId` | string | MAY | Identifier in a named checklist, prefixed: `gbif:2493091`, `ebird:comtai1`, `inat:13858`. |
 | `observationMethod` | string | MAY | *v0.3.* `machine` (default) or `human`. See section 5.1. |
 | `individualCount` | integer | MAY | *v0.3.* Number of individuals, as reported by the source (at least 1). |
-| `confidence` | number | MUST | Classifier score in [0,1] as emitted by the model. Producers MUST NOT rescale. |
+| `confidence` | number | MUST* | Classifier score in [0,1] as emitted by the model. Producers MUST NOT rescale. *v0.3: when relaying detections from a system that does not expose the score, omit it rather than invent one; consumers MUST NOT read a missing score as 0 or 1. |
 | `classifier` | object | MUST | `{ "name": string, "version": string }`, e.g. `{ "name": "BirdNET", "version": "2.4" }`. The pair MUST identify the model well enough that a consumer can reproduce or discount the identification. |
 | `classifiedAt` | string | MAY | When inference ran, ISO 8601 with offset, if different from `eventStart`. |
 | `pipeline` | array | MAY | *v0.2.* Ordered model steps that produced this detection, first step first, e.g. a detector followed by a classifier. Each step: `role` (free text; suggested `detector`, `classifier`, `filter`, `tracker`), `name`, `version`, and optional `weights` (file hash, model registry id or URL). `classifier` stays required and names the step that produced the label, so v0.1 consumers keep working. Confidence is carried for the final label only. |
@@ -66,7 +66,7 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 
 When `observationMethod` is `"human"`, the identification was made by a person, not a model. Then:
 
-- `confidence` and `classifier` become MAY instead of MUST (they stay MUST for machine detections). Producers MUST NOT invent a model, version or score for a human observation. If the source has a verification state of its own, carry it as `source.trusted` or as `review`.
+- `confidence` and `classifier` become MAY instead of MUST (`classifier` stays MUST for machine detections; `confidence` is omitted when the relaying system does not expose it, see section 5). Producers MUST NOT invent a model, version or score for a human observation. If the source has a verification state of its own, carry it as `source.trusted` or as `review`.
 - Consumers MUST NOT treat a missing `confidence` as 0 or 1, and SHOULD show human observations as such.
 - A common name that the producer cannot map to a scientific name SHOULD be kept in `vernacularName` with `scientificName` omitted and `taxonRank` `"unranked"`, rather than dropped.
 
@@ -113,6 +113,9 @@ Events with no `review` object are `unreviewed`. A `rejected` event SHOULD still
 | `sourceRecordId` | string | MAY | The event's primary key in the producing system, for round-tripping. |
 | `provider` | string | MAY | *v0.3.* The contributing platform or organisation inside an aggregating source, e.g. `"Conserve.io"` for a sighting relayed by Acartia. |
 | `trusted` | boolean | MAY | *v0.3.* The source's own verification or trust flag, passed through unchanged. |
+| `providerUrl` | string | MAY | *v0.3.* Page to credit and link for the provider or dataset, e.g. an OBIS dataset page. |
+| `occurrenceId` | string | MAY | *v0.3.* Darwin Core `occurrenceID` when the event is also a biodiversity occurrence. Consumers that receive the same occurrence from two aggregators (e.g. OBIS and GBIF) SHOULD keep one record and credit both. |
+| `institutionCode` | string | MAY | *v0.3.* Darwin Core `institutionCode`, compared together with `occurrenceId`. |
 
 ## 9. Identity and deduplication
 
@@ -143,4 +146,4 @@ A device MAY send health reports as a separate record type, validated by `schema
 
 ## 11. Versioning
 
-The `wdx` field carries the spec version: `"0.1"`, `"0.2"` or `"0.3"`. Version 0.2 only adds optional fields (`detection.pipeline`, `media.region`), so every v0.1 event is also valid under the v0.2 schema. Version 0.3 adds optional fields (`detection.observationMethod`, `detection.individualCount`, `source.provider`, `source.trusted`) and relaxes `confidence` and `classifier` for human observations only, so every v0.1 and v0.2 event is valid under the v0.3 schema. A v0.3 human observation without `confidence` is not valid under the v0.2 schema, which is why it carries `"wdx": "0.3"`. See CHANGELOG.md. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.
+The `wdx` field carries the spec version: `"0.1"`, `"0.2"` or `"0.3"`. Version 0.2 only adds optional fields (`detection.pipeline`, `media.region`), so every v0.1 event is also valid under the v0.2 schema. Version 0.3 adds optional fields (`detection.observationMethod`, `detection.individualCount`, `source.provider`, `source.trusted`, `source.providerUrl`, `source.occurrenceId`, `source.institutionCode`), the `order` rank, and relaxes `confidence` (omitted when the relaying system has none) and, for human observations, `classifier`, so every v0.1 and v0.2 event is valid under the v0.3 schema. A v0.3 human observation without `confidence` is not valid under the v0.2 schema, which is why it carries `"wdx": "0.3"`. See CHANGELOG.md. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.
