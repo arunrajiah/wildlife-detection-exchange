@@ -4,7 +4,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22200864.svg)](https://doi.org/10.5281/zenodo.22200864)
 
-**Status: v0.2 draft** (adds optional model pipeline, image regions and a device health record; every v0.1 event stays valid). v0.1 is published: cite all versions via DOI 10.5281/zenodo.22200864; the v0.1 release is 10.5281/zenodo.22200865.
+**Status: v0.3 draft** (v0.2 added an optional model pipeline, image regions and a device health record; v0.3 adds human observations. Every earlier event stays valid; see [CHANGELOG.md](CHANGELOG.md)). v0.1 is published: cite all versions via DOI 10.5281/zenodo.22200864; the v0.1 release is 10.5281/zenodo.22200865.
 
 > Part of an open wildlife toolkit. Not sure this is the project you need? See [which project to use](#part-of-an-open-wildlife-toolkit).
 

@@ -1,0 +1,28 @@
+{
+  "wdx": "0.3",
+  "eventId": "acartia:3aee1aaa-0000-4000-8000-000000000000",
+  "eventStart": "2026-10-15T20:35:45Z",
+  "deployment": {
+    "deploymentId": "conserve-io",
+    "name": "Conserve.io",
+    "latitude": 38.9,
+    "longitude": -123.7,
+    "coordinateUncertaintyMeters": 7900,
+    "sensorType": "other",
+    "sensorModel": "human-observer"
+  },
+  "detection": {
+    "observationMethod": "human",
+    "individualCount": 1,
+    "scientificName": "Megaptera novaeangliae",
+    "vernacularName": "Humpback",
+    "taxonRank": "species"
+  },
+  "source": {
+    "system": "acartia",
+    "sourceRecordId": "3aee1aaa-0000-4000-8000-000000000000",
+    "provider": "Conserve.io",
+    "trusted": false
+  },
+  "license": "unknown-pending"
+}
