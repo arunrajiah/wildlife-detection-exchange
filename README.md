@@ -44,7 +44,7 @@ WDX is a small JSON format for a single machine detection event, plus an NDJSON 
 ## Implementations
 
 - **Producer:** [wdx-agent](https://github.com/arunrajiah/wdx-agent) reads detections from BirdNET-Pi, BirdNET-Go, SpeciesNet camera trap output and BatDetect2 bat detector output, and sends them as WDX events.
-- **Consumer:** [WildNetwork](https://wlnw.org) ([source](https://github.com/wlnw-org/wildnetwork)) accepts WDX over HTTP as a single object, a JSON array or NDJSON, validates each event against the schema in this repository, and removes duplicates by `eventId`.
+- **Consumer:** [Wildlife Network](https://wlnw.org) ([source](https://github.com/wlnw-org/wildnetwork)) accepts WDX over HTTP as a single object, a JSON array or NDJSON, validates each event against the schema in this repository, and removes duplicates by `eventId`.
 - **Planned:** emitting WDX from BirdEcho, wildecho-api and SpeciesNet Studio, and connectors into EarthRanger via Gundi.
 
 ## Part of an open wildlife toolkit
@@ -53,18 +53,18 @@ Eight open source projects for listening to, identifying and mapping wildlife. T
 
 | I want to | Use | What it is |
 |---|---|---|
-| See where birds and wildlife are moving, or download the data | [WildNetwork](https://github.com/arunrajiah/wildnetwork) | The live map and open data: [wlnw.org](https://wlnw.org) |
-| Build a monitoring station from open hardware | [WildNetwork Base](https://github.com/arunrajiah/wildnetwork-base) | Software and a ready-to-flash SD card image (beta) for the open WildNetwork station (Raspberry Pi, microphone, solar) |
+| See where birds and wildlife are moving, or download the data | [Wildlife Network](https://github.com/wlnw-org/wildnetwork) | The live map and open data: [wlnw.org](https://wlnw.org) |
+| Build a monitoring station from open hardware | [Wildlife Network Base](https://github.com/arunrajiah/wildnetwork-base) | Software and a ready-to-flash SD card image (beta) for the open Wildlife Network station (Raspberry Pi, microphone, solar) |
 | Share detections from a BirdNET-Pi, BirdNET-Go, camera trap or bat detector you already have | [wdx-agent](https://github.com/arunrajiah/wdx-agent) | One small program that sends your station's detections. BirdWeather stations are already included and need nothing |
 | Follow your own station on your phone | [BirdEcho](https://github.com/arunrajiah/birdecho) | Android app for BirdNET-Pi, BirdNET-Go and BirdWeather stations |
 | Identify a sound you just heard | [WildEcho](https://github.com/arunrajiah/wildecho) | Phone app: record a clip, get ranked species |
 | Run your own sound identification server | [wildecho-api](https://github.com/arunrajiah/wildecho-api) | Self-hosted species identification from audio, on CPU, no API keys |
-| Check camera trap predictions before you use them | [SpeciesNet Studio](https://github.com/arunrajiah/speciesnet-studio) | Self-hosted review of SpeciesNet results, then send them to WildNetwork |
+| Check camera trap predictions before you use them | [SpeciesNet Studio](https://github.com/arunrajiah/speciesnet-studio) | Self-hosted review of SpeciesNet results, then send them to Wildlife Network |
 | Make your own software or device produce or read detections in a common format | [WDX](https://github.com/arunrajiah/wildlife-detection-exchange) (this project) | The open format for one AI wildlife detection; maps to Darwin Core |
 
-**How this one fits.** WDX is the shared language: the WildNetwork Base, wdx-agent, SpeciesNet Studio and WildEcho produce it, and WildNetwork reads it. It belongs to no single tool, so any other platform can use it too.
+**How this one fits.** WDX is the shared language: the Wildlife Network Base, wdx-agent, SpeciesNet Studio and WildEcho produce it, and Wildlife Network reads it. It belongs to no single tool, so any other platform can use it too.
 
-**How they connect:** stations (a WildNetwork Base, BirdNET-Pi, BirdNET-Go, camera traps) produce detections; wdx-agent sends them in the WDX format, SpeciesNet Studio adds a human check for camera traps, and WildNetwork maps them. Connected today: wdx-agent, the WildNetwork Base, SpeciesNet Studio and WildEcho (if you switch sharing on) send to WildNetwork, BirdEcho shows WildNetwork arrivals near your station, and WildEcho uses wildecho-api. Planned: Base setup in BirdEcho.
+**How they connect:** stations (a Wildlife Network Base, BirdNET-Pi, BirdNET-Go, camera traps) produce detections; wdx-agent sends them in the WDX format, SpeciesNet Studio adds a human check for camera traps, and Wildlife Network maps them. Connected today: wdx-agent, the Wildlife Network Base, SpeciesNet Studio and WildEcho (if you switch sharing on) send to Wildlife Network, BirdEcho shows Wildlife Network arrivals near your station, and WildEcho uses wildecho-api. Planned: Base setup in BirdEcho.
 
 ## License
 
