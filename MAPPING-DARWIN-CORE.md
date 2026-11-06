@@ -35,6 +35,10 @@ This document maps every WDX field with a Darwin Core (DwC) equivalent to its te
 | `media.region` (v0.2) | Audiovisual Core `ac:hasROI` / region of interest terms | DwC occurrence records have no region term; keep it in the source WDX or `dwc:dynamicProperties` when exporting plain occurrences. |
 | `source.system` + `systemVersion` | `dwc:institutionCode` is NOT used; put in `dwc:dynamicProperties` | Producing software is provenance, not an institution. `dynamicProperties` example: `{"wdxSource":"birdnet-pi 0.13"}`. |
 | `license` | `dcterms:license` | |
+| `dataset.datasetId` / `title` (v0.4) | `dwc:datasetID` / `dwc:datasetName` | |
+| `dataset.rightsHolder` (v0.4) | `dcterms:rightsHolder` | |
+| `dataset.recordedBy` (v0.4) | `dwc:recordedBy` (and `dwc:recordedByID` for ORCID iDs) | Joined with ` | `. |
+| `dataset.citation` / `doi` (v0.4) | `dcterms:bibliographicCitation` | Also the dataset's EML citation when publishing through an IPT. |
 
 ## Export to GBIF
 

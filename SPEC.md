@@ -1,4 +1,4 @@
-# Wildlife Detection Exchange (WDX) Specification, v0.3
+# Wildlife Detection Exchange (WDX) Specification, v0.4
 
 Status: draft proposal. This version is published to anchor discussion and reference implementations; breaking changes are expected before v1.0.
 
@@ -24,7 +24,7 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 
 | Field | Type | Req | Description |
 |---|---|---|---|
-| `wdx` | string | MUST | Spec version this event conforms to: `"0.1"`, `"0.2"` or `"0.3"`. |
+| `wdx` | string | MUST | Spec version this event conforms to: `"0.1"`, `"0.2"`, `"0.3"` or `"0.4"`. |
 | `eventId` | string | MUST | Globally unique, stable identifier for this detection event. UUIDv4 RECOMMENDED. Re-emitting the same detection MUST reuse the same `eventId`. |
 | `eventStart` | string | MUST | Start of the detection window, ISO 8601 with numeric UTC offset (e.g. `2026-08-25T06:14:03+05:30`). Local offset SHOULD be preserved rather than normalised to Z. |
 | `eventEnd` | string | MAY | End of the detection window, same format. Omit for instantaneous events. |
@@ -34,6 +34,7 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 | `review` | object | MAY | Human verification state. See section 7. |
 | `source` | object | MUST | Producing system and its local record id. See section 8. |
 | `license` | string | MAY | SPDX identifier or URL for the data license of this event, e.g. `CC0-1.0`. If omitted, the license is whatever the stream's publisher declares out of band. |
+| `dataset` | object | MAY | *v0.4.* The dataset the event belongs to, so every copy of the event carries its credit. See section 8.1. |
 
 ## 4. `deployment`
 
@@ -117,6 +118,22 @@ Events with no `review` object are `unreviewed`. A `rejected` event SHOULD still
 | `occurrenceId` | string | MAY | *v0.3.* Darwin Core `occurrenceID` when the event is also a biodiversity occurrence. Consumers that receive the same occurrence from two aggregators (e.g. OBIS and GBIF) SHOULD keep one record and credit both. |
 | `institutionCode` | string | MAY | *v0.3.* Darwin Core `institutionCode`, compared together with `occurrenceId`. |
 
+### 8.1 `dataset` (v0.4)
+
+Detections are often collected as a dataset: a field season, a park's recorders, a lab's archive. `dataset` names it, so aggregators can credit the people and institution behind every event and point to one citation, however the event was copied or relayed.
+
+| Field | Type | Req | Description |
+|---|---|---|---|
+| `datasetId` | string | MUST | Stable identifier of the dataset, unique within the producing system (e.g. a slug or a GBIF dataset key). |
+| `title` | string | MAY | Human title of the dataset. |
+| `rightsHolder` | string | MAY | Person or institution holding the rights (`dcterms:rightsHolder`). |
+| `recordedBy` | array of string | MAY | People to credit, as names or ORCID iD URLs (`https://orcid.org/0000-...`). |
+| `citation` | string | MAY | Preferred citation text. |
+| `doi` | string | MAY | DOI of the dataset, without the resolver prefix (e.g. `10.15468/abcd12`). |
+| `url` | string | MAY | Landing page of the dataset. |
+
+Consumers that display or redistribute events SHOULD credit the dataset by its `title` (or `rightsHolder`) and link its `doi` or `url`. `license` stays per event; within one dataset it SHOULD be the same for every event.
+
 ## 9. Identity and deduplication
 
 `eventId` is the identity. Consumers MUST treat two events with the same `eventId` as the same event, keeping the one with the later `review.reviewedAt` (or the later-received one when neither is reviewed). This makes review-state updates a re-emit, not a new protocol verb.
@@ -146,4 +163,4 @@ A device MAY send health reports as a separate record type, validated by `schema
 
 ## 11. Versioning
 
-The `wdx` field carries the spec version: `"0.1"`, `"0.2"` or `"0.3"`. Version 0.2 only adds optional fields (`detection.pipeline`, `media.region`), so every v0.1 event is also valid under the v0.2 schema. Version 0.3 adds optional fields (`detection.observationMethod`, `detection.individualCount`, `source.provider`, `source.trusted`, `source.providerUrl`, `source.occurrenceId`, `source.institutionCode`), the `order` rank, and relaxes `confidence` (omitted when the relaying system has none) and, for human observations, `classifier`, so every v0.1 and v0.2 event is valid under the v0.3 schema. A v0.3 human observation without `confidence` is not valid under the v0.2 schema, which is why it carries `"wdx": "0.3"`. See CHANGELOG.md. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.
+The `wdx` field carries the spec version: `"0.1"`, `"0.2"`, `"0.3"` or `"0.4"`. Version 0.2 only adds optional fields (`detection.pipeline`, `media.region`), so every v0.1 event is also valid under the v0.2 schema. Version 0.3 adds optional fields (`detection.observationMethod`, `detection.individualCount`, `source.provider`, `source.trusted`, `source.providerUrl`, `source.occurrenceId`, `source.institutionCode`), the `order` rank, and relaxes `confidence` (omitted when the relaying system has none) and, for human observations, `classifier`, so every v0.1 and v0.2 event is valid under the v0.3 schema. A v0.3 human observation without `confidence` is not valid under the v0.2 schema, which is why it carries `"wdx": "0.3"`. Version 0.4 adds only the optional `dataset` object, so every earlier event is valid under the v0.4 schema. See CHANGELOG.md. Within 0.x, breaking changes MAY occur at each minor version. From 1.0, breaking changes require a major version. Consumers SHOULD accept any 0.x event on a best-effort basis.

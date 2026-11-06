@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4 (draft, November 2026)
+
+- `dataset`: the dataset an event belongs to (`datasetId`, `title`, `rightsHolder`, `recordedBy`, `citation`, `doi`, `url`), so credit travels with every event (SPEC section 8.1). Asked for by researchers uploading past field seasons to Wildlife Network.
+- Backward compatible: every v0.1, v0.2 and v0.3 event validates against the v0.4 schema.
+
 ## 0.3 (draft, October 2026)
 
 - `detection.observationMethod`: `machine` (default) or `human`. Human observations need no `confidence` or `classifier`, and producers must not invent them (SPEC section 5.1).
