@@ -1,6 +1,10 @@
+<p align="center"><a href="https://wlnw.org"><img src="https://raw.githubusercontent.com/wlnw-org/wildnetwork/main/public/logo.svg" width="72" alt="Wildlife Network logo" /></a></p>
+
 # Wildlife Detection Exchange (WDX)
 
 *An open interchange format for AI wildlife detections from community-run sensors.*
+
+Part of [Wildlife Network](https://wlnw.org), which maintains it. The format is open and belongs to no single platform: anyone may produce or read it.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22200864.svg)](https://doi.org/10.5281/zenodo.22200864)
 
