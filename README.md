@@ -49,7 +49,6 @@ WDX is a small JSON format for a single machine detection event, plus an NDJSON 
 
 - **Producer:** [wdx-agent](https://github.com/arunrajiah/wdx-agent) reads detections from BirdNET-Pi, BirdNET-Go, SpeciesNet camera trap output and BatDetect2 bat detector output, and sends them as WDX events.
 - **Consumer:** [Wildlife Network](https://wlnw.org) ([source](https://github.com/wlnw-org/wildnetwork)) accepts WDX over HTTP as a single object, a JSON array or NDJSON, validates each event against the schema in this repository, and removes duplicates by `eventId`.
-- **Planned:** emitting WDX from BirdEcho, wildecho-api and SpeciesNet Studio, and connectors into EarthRanger via Gundi.
 
 ## Part of an open wildlife toolkit
 
@@ -68,7 +67,7 @@ Eight open source projects for listening to, identifying and mapping wildlife. T
 
 **How this one fits.** WDX is the shared language: the Wildlife Network Base, wdx-agent, SpeciesNet Studio and WildEcho produce it, and Wildlife Network reads it. It belongs to no single tool, so any other platform can use it too.
 
-**How they connect:** stations (a Wildlife Network Base, BirdNET-Pi, BirdNET-Go, camera traps) produce detections; wdx-agent sends them in the WDX format, SpeciesNet Studio adds a human check for camera traps, and Wildlife Network maps them. Connected today: wdx-agent, the Wildlife Network Base, SpeciesNet Studio and WildEcho (if you switch sharing on) send to Wildlife Network, BirdEcho shows Wildlife Network arrivals near your station, and WildEcho uses wildecho-api. Planned: Base setup in BirdEcho.
+**How they connect:** stations (a Wildlife Network Base, BirdNET-Pi, BirdNET-Go, camera traps) produce detections; wdx-agent sends them in the WDX format, SpeciesNet Studio adds a human check for camera traps, and Wildlife Network maps them. Connected today: wdx-agent, the Wildlife Network Base, SpeciesNet Studio and WildEcho (if you switch sharing on) send to Wildlife Network, BirdEcho shows Wildlife Network arrivals near your station, and WildEcho uses wildecho-api.
 
 ## License
 
