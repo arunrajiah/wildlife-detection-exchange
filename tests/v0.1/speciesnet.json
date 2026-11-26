@@ -1,0 +1,39 @@
+{
+  "wdx": "0.1",
+  "eventId": "c81d5b02-9a6e-4f13-b7c4-0e2a9d8f6c55",
+  "eventStart": "2026-08-23T02:07:41-06:00",
+  "deployment": {
+    "deploymentId": "camtrap-ridge-07",
+    "name": "Ridge trail, north gate",
+    "latitude": 46.8721,
+    "longitude": -113.994,
+    "coordinateUncertaintyMeters": 30,
+    "sensorType": "camera-trap",
+    "sensorModel": "Browning Strike Force Pro XD"
+  },
+  "detection": {
+    "scientificName": "Puma concolor",
+    "vernacularName": "Mountain Lion",
+    "taxonRank": "species",
+    "taxonId": "gbif:2435099",
+    "confidence": 0.87,
+    "classifier": { "name": "SpeciesNet", "version": "4.0.1a" },
+    "classifiedAt": "2026-08-23T08:15:02-06:00"
+  },
+  "media": {
+    "mediaType": "image",
+    "fileName": "RIDGE07_20260823_020741_0332.jpg",
+    "sha256": "5e8c1b3a7d9f2e4c6a8b0d2f4e6c8a0b2d4f6e8c0a2b4d6f8e0c2a4b6d8f0e2c"
+  },
+  "review": {
+    "status": "confirmed",
+    "reviewedBy": "j.harris",
+    "reviewedAt": "2026-08-24T10:31:00-06:00"
+  },
+  "source": {
+    "system": "speciesnet-studio",
+    "systemVersion": "0.2.0",
+    "sourceRecordId": "batch-2026-08-23/img-332"
+  },
+  "license": "CC0-1.0"
+}
