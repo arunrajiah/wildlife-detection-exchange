@@ -7,12 +7,12 @@ authors:
     given-names: "Arun"
     city: "Chennai"
     country: "IN"
-version: "0.1"
+version: "0.4"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.22200864"
     description: "Concept DOI covering all versions"
-date-released: "2026-08-25"
+date-released: "2026-11-26"
 license: "CC-BY-4.0"
 repository-code: "https://github.com/arunrajiah/wildlife-detection-exchange"
 keywords:
@@ -32,6 +32,7 @@ abstract: >
   location, time, classifier identity and version, confidence, media reference
   and human review status, and maps field by field to Darwin Core so that any
   WDX stream can be exported as a standard occurrence dataset with
-  basisOfRecord MachineObservation and published to GBIF. Version 0.1 is a
-  draft proposal published to anchor community discussion and reference
-  implementations.
+  basisOfRecord MachineObservation and published to GBIF. Version 0.4 adds
+  human observations (v0.3), an optional model pipeline and image regions
+  (v0.2) and a dataset block for credit (v0.4); every earlier event stays
+  valid. It remains a draft ahead of v1.0.

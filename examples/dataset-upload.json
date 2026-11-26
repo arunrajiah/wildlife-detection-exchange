@@ -1,0 +1,51 @@
+{
+  "wdx": "0.4",
+  "eventId": "fieldseason-2025:rec-00412",
+  "eventStart": "2025-04-18T05:42:10+01:00",
+  "eventEnd": "2025-04-18T05:42:13+01:00",
+  "deployment": {
+    "deploymentId": "fieldseason-2025:site-07",
+    "latitude": 51.5,
+    "longitude": -1.2,
+    "coordinateUncertaintyMeters": 1000,
+    "sensorType": "acoustic-recorder",
+    "sensorModel": "AudioMoth 1.2"
+  },
+  "detection": {
+    "scientificName": "Phylloscopus collybita",
+    "vernacularName": "Common Chiffchaff",
+    "taxonRank": "species",
+    "confidence": 0.87,
+    "classifier": {
+      "name": "BirdNET",
+      "version": "2.4"
+    }
+  },
+  "media": {
+    "mediaType": "audio",
+    "fileName": "20250418_054000.WAV",
+    "startOffsetSeconds": 130,
+    "durationSeconds": 3
+  },
+  "review": {
+    "status": "confirmed",
+    "reviewedBy": "https://orcid.org/0000-0002-1825-0097",
+    "reviewedAt": "2025-06-02T14:10:00+01:00"
+  },
+  "source": {
+    "system": "birdnet-analyzer",
+    "systemVersion": "2.4",
+    "sourceRecordId": "rec-00412"
+  },
+  "dataset": {
+    "datasetId": "fieldseason-2025",
+    "title": "Example Field Station dawn chorus recordings, spring 2025",
+    "rightsHolder": "Example Field Station",
+    "recordedBy": [
+      "https://orcid.org/0000-0002-1825-0097"
+    ],
+    "citation": "Example Field Station (2025). Dawn chorus recordings, spring 2025.",
+    "url": "https://example.org/datasets/fieldseason-2025"
+  },
+  "license": "CC-BY-4.0"
+}

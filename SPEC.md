@@ -1,5 +1,7 @@
 # Wildlife Detection Exchange (WDX) Specification, v0.4
 
+Version: 0.4 (November 2026). Every v0.1, v0.2 and v0.3 event remains valid under this version.
+
 Status: draft proposal. This version is published to anchor discussion and reference implementations; breaking changes are expected before v1.0.
 
 The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted as described in RFC 2119.

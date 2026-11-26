@@ -33,16 +33,17 @@ WDX is a small JSON format for a single machine detection event, plus an NDJSON 
 
 - **Not a replacement for Camtrap DP.** Camtrap DP is the TDWG-managed standard for packaging complete camera trap studies (deployments, media, observations) and is the right format for institutional archiving and GBIF publication of such studies. WDX is the event-level wire format upstream of it; a WDX stream from a camera trap can be aggregated into a Camtrap DP package.
 - **Not a media archive format.** WDX references media by URL or filename and hash; it does not carry audio or images.
-- **Not a claim of authority.** This is a v0.1 proposal by a maintainer of several of the tools involved, published to have something concrete to align on. Field names and structures are expected to change with community input.
+- **Not a claim of authority.** This is a v0.4 draft by a maintainer of several of the tools involved, published to have something concrete to align on. Field names and structures are expected to change with community input.
 
 ## Files
 
 | File | What it is |
 |---|---|
-| SPEC.md | The v0.1 specification |
-| schema/detection-event.schema.json | JSON Schema (draft 2020-12) for a single detection event |
+| SPEC.md | The v0.4 specification (every v0.1, v0.2 and v0.3 event stays valid) |
+| schema/detection-event.schema.json | JSON Schema (draft 2020-12) for a single detection event, v0.1 to v0.4 |
+| schema/device-status.schema.json | JSON Schema for a device health report (added in v0.2, unchanged since) |
 | MAPPING-DARWIN-CORE.md | Field-by-field mapping to Darwin Core, plus export notes for GBIF and Camtrap DP |
-| examples/ | Real-shaped example events from BirdNET-Pi, a Perch pipeline (wildecho-api) and SpeciesNet Studio |
+| examples/ | Real-shaped example events from BirdNET-Pi, a Perch pipeline (wildecho-api), SpeciesNet Studio, a camera-trap model pipeline, a human sighting, a dataset upload (v0.4) and a device status report. Older examples keep their original `wdx` version on purpose, to show they still validate. |
 | CITATION.cff | Citation metadata |
 
 ## Implementations
