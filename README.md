@@ -8,7 +8,7 @@ Part of [Wildlife Network](https://wlnw.org), which maintains it. The format is 
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22200864.svg)](https://doi.org/10.5281/zenodo.22200864)
 
-**Status: v0.4 draft** (v0.2 added an optional model pipeline, image regions and a device health record; v0.3 added human observations; v0.4 adds a dataset block for credit. Every earlier event stays valid; see [CHANGELOG.md](CHANGELOG.md)). v0.1 is published: cite all versions via DOI 10.5281/zenodo.22200864; the v0.1 release is 10.5281/zenodo.22200865.
+**Status: v0.4 (released 26 November 2026, still a draft ahead of v1.0)** (v0.2 added an optional model pipeline, image regions and a device health record; v0.3 added human observations; v0.4 adds a dataset block for credit. Every earlier event stays valid; see [CHANGELOG.md](CHANGELOG.md)). Cite all versions via DOI 10.5281/zenodo.22200864; the v0.4 release is 10.5281/zenodo.24548567 and the v0.1 release is 10.5281/zenodo.22200865.
 
 > Part of an open wildlife toolkit. Not sure this is the project you need? See [which project to use](#part-of-an-open-wildlife-toolkit).
 
