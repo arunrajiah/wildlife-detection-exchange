@@ -1,9 +1,23 @@
 # Changelog
 
-## 0.4 (draft, November 2026)
+## Upgrading from v0.1
+
+Nothing breaks. Every v0.1 event is valid under the v0.4 schema unchanged, and consumers SHOULD accept any 0.x event.
+
+To use the newer fields, set `"wdx"` to the version that introduced the newest field you send (for example `"0.4"` when you send `dataset`), then add what you need:
+
+- **Camera traps and other image pipelines (v0.2):** list every model step in `detection.pipeline` (keep `classifier` as the step that gave the label) and give the animal's position in `media.region`.
+- **Device health (v0.2):** send battery, storage and backlog as a separate `device-status` record (`schema/device-status.schema.json`). It is never a detection.
+- **Human sightings and relayed data (v0.3):** set `detection.observationMethod` to `"human"` and leave out `confidence` and `classifier` rather than inventing them. When relaying from a system that hides the model score, leave out `confidence`. Use `source.occurrenceId` with `source.institutionCode` so receivers can merge the same occurrence from two aggregators.
+- **Credit (v0.4):** add a `dataset` block (`datasetId` at least) so the dataset's title, rights holder, people and citation travel with every event.
+
+Consumers that only read v0.1 fields keep working: no v0.1 field was removed, renamed or given a new meaning. The one relaxation is that `confidence` (any event, v0.3) and `classifier` (human observations only, v0.3) may be missing, so code that reads them must handle their absence.
+
+## 0.4 (November 2026)
 
 - `dataset`: the dataset an event belongs to (`datasetId`, `title`, `rightsHolder`, `recordedBy`, `citation`, `doi`, `url`), so credit travels with every event (SPEC section 8.1). Asked for by researchers uploading past field seasons to Wildlife Network.
 - Backward compatible: every v0.1, v0.2 and v0.3 event validates against the v0.4 schema.
+- Schema `$id`s point at the v0.4.0 tag, the detection event schema's title names v0.4, and `examples/dataset-upload.json` shows a v0.4 event. `npm test` validates every example.
 
 ## 0.3 (draft, October 2026)
 
@@ -19,9 +33,11 @@
 
 ## 0.2 (October 2026)
 
-- `detection.pipeline` (ordered model steps), `media.region` (boxes, polygons, points), device status record.
-- Every v0.1 event stays valid.
+- `detection.pipeline`: ordered model steps that produced a detection (`role`, `name`, `version`, optional `weights`), for example a detector followed by a classifier. `classifier` stays required and names the step that gave the label (SPEC section 5).
+- `media.region`: where the animal is in the image or video frame, as a `box`, `polygon` or `point`, normalized or in pixels, with an optional video `frame` (SPEC section 6.1). One region per event.
+- Device status record: a separate record type (`kind: "device-status"`, `schema/device-status.schema.json`) for battery, storage, temperature, uptime, network, backlog and software versions. Never shown as an observation (SPEC section 10a).
+- Backward compatible: every v0.1 event validates against the v0.2 schema.
 
-## 0.1 (2026)
+## 0.1 (August 2026)
 
-- First published draft. DOI 10.5281/zenodo.22200865.
+- First published draft: detection event, batch convention, Darwin Core mapping. DOI 10.5281/zenodo.22200865.
