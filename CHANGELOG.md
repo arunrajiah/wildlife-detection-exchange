@@ -17,7 +17,7 @@ Consumers that only read v0.1 fields keep working: no v0.1 field was removed, re
 
 - `dataset`: the dataset an event belongs to (`datasetId`, `title`, `rightsHolder`, `recordedBy`, `citation`, `doi`, `url`), so credit travels with every event (SPEC section 8.1). Asked for by researchers uploading past field seasons to Wildlife Network.
 - Backward compatible: every v0.1, v0.2 and v0.3 event validates against the v0.4 schema.
-- Schema `$id`s point at the v0.4.0 tag, the detection event schema's title names v0.4, and `examples/dataset-upload.json` shows a v0.4 event. `npm test` validates every example.
+- Schema `$id`s point at the v0.4.0 tag, the detection event schema's title names v0.4, and `examples/dataset-upload.json` shows a v0.4 event. `npm test` validates every example. MAPPING-DARWIN-CORE.md now covers the v0.3 fields (`HumanObservation`, `individualCount`, `occurrenceID`, `institutionCode`, provider and trust flags).
 
 ## 0.3 (draft, October 2026)
 
