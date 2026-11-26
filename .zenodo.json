@@ -1,0 +1,35 @@
+{
+  "upload_type": "dataset",
+  "title": "Wildlife Detection Exchange (WDX): an open interchange format for AI wildlife detections from community-run sensors",
+  "version": "0.4",
+  "creators": [
+    {
+      "name": "Rajiah, Arun",
+      "affiliation": "Chennai, India",
+      "orcid": "0009-0009-5957-5814"
+    }
+  ],
+  "description": "<p>WDX is a lightweight JSON interchange format for machine-generated wildlife detection events from continuous community-run sensors such as BirdNET acoustic stations and AI-classified camera traps. Each event carries taxon, location, time, classifier identity and version, confidence, media reference and human review status, and maps field by field to Darwin Core, so any WDX stream can be exported as a standard occurrence dataset with basisOfRecord MachineObservation and published to GBIF.</p><p>Version 0.4 adds a dataset block so credit travels with every event. Earlier versions added an optional model pipeline, image regions and a device status record (v0.2) and human observations (v0.3). Every v0.1, v0.2 and v0.3 event stays valid under the v0.4 schema. WDX remains a draft ahead of v1.0.</p><p>Licences: the specification text and other documents are CC BY 4.0 (LICENSE-DOCS); the JSON Schemas in schema/ and the examples are MIT (LICENSE).</p>",
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "bioacoustics",
+    "camera traps",
+    "biodiversity informatics",
+    "Darwin Core",
+    "machine observation",
+    "BirdNET",
+    "Perch",
+    "SpeciesNet",
+    "data standard",
+    "JSON Schema"
+  ],
+  "notes": "Specification text CC BY 4.0. JSON Schemas (schema/) and examples (examples/) MIT.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/arunrajiah/wildlife-detection-exchange",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
