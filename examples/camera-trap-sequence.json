@@ -1,0 +1,50 @@
+[
+  {
+    "wdx": "0.5",
+    "eventId": "speciesnet:cam07:IMG_0611.JPG:0",
+    "eventStart": "2026-10-02T21:14:05+05:30",
+    "deployment": { "deploymentId": "cam07", "latitude": 11.58, "longitude": 76.54, "coordinateUncertaintyMeters": 1000, "sensorType": "camera-trap" },
+    "detection": {
+      "scientificName": "Axis axis",
+      "vernacularName": "Chital",
+      "confidence": 0.91,
+      "classifier": { "name": "SpeciesNet", "version": "4.0.1a" }
+    },
+    "media": { "mediaType": "image", "fileName": "IMG_0611.JPG", "region": { "type": "box", "coordinates": [0.21, 0.40, 0.18, 0.25] } },
+    "group": { "groupId": "cam07-seq-0153", "type": "sequence" },
+    "source": { "system": "speciesnet", "sourceRecordId": "IMG_0611.JPG:0" },
+    "license": "CC-BY-4.0"
+  },
+  {
+    "wdx": "0.5",
+    "eventId": "speciesnet:cam07:IMG_0612.JPG:0",
+    "eventStart": "2026-10-02T21:14:06+05:30",
+    "deployment": { "deploymentId": "cam07", "latitude": 11.58, "longitude": 76.54, "coordinateUncertaintyMeters": 1000, "sensorType": "camera-trap" },
+    "detection": {
+      "scientificName": "Axis axis",
+      "vernacularName": "Chital",
+      "confidence": 0.88,
+      "classifier": { "name": "SpeciesNet", "version": "4.0.1a" }
+    },
+    "media": { "mediaType": "image", "fileName": "IMG_0612.JPG", "region": { "type": "box", "coordinates": [0.33, 0.41, 0.17, 0.24] } },
+    "group": { "groupId": "cam07-seq-0153", "type": "sequence" },
+    "source": { "system": "speciesnet", "sourceRecordId": "IMG_0612.JPG:0" },
+    "license": "CC-BY-4.0"
+  },
+  {
+    "wdx": "0.5",
+    "eventId": "speciesnet:cam07:IMG_0612.JPG:1",
+    "eventStart": "2026-10-02T21:14:06+05:30",
+    "deployment": { "deploymentId": "cam07", "latitude": 11.58, "longitude": 76.54, "coordinateUncertaintyMeters": 1000, "sensorType": "camera-trap" },
+    "detection": {
+      "scientificName": "Cuon alpinus",
+      "vernacularName": "Dhole",
+      "confidence": 0.74,
+      "classifier": { "name": "SpeciesNet", "version": "4.0.1a" }
+    },
+    "media": { "mediaType": "image", "fileName": "IMG_0612.JPG", "region": { "type": "box", "coordinates": [0.71, 0.52, 0.12, 0.15] } },
+    "group": { "groupId": "cam07-seq-0153", "type": "sequence" },
+    "source": { "system": "speciesnet", "sourceRecordId": "IMG_0612.JPG:1" },
+    "license": "CC-BY-4.0"
+  }
+]
