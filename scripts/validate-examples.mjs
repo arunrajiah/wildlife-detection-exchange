@@ -1,4 +1,4 @@
-// Validates every file in examples/ against the WDX schemas.
+// Validates every file in examples/ (single events and .wdx.ndjson batches) against the WDX schemas.
 // Detection events go against schema/detection-event.schema.json,
 // records with "kind": "device-status" against schema/device-status.schema.json.
 // Also checks that the v0.1.0 release examples (tests/v0.1) are still accepted.
@@ -32,6 +32,17 @@ for (const name of readdirSync(join(root, "examples")).filter((f) => f.endsWith(
       for (const e of validate.errors) console.log(`      ${e.instancePath || "/"} ${e.message}`);
     }
   }
+}
+
+// Batches (SPEC section 2): one event per line, no enclosing array, no blank lines.
+for (const name of readdirSync(join(root, "examples")).filter((f) => f.endsWith(".wdx.ndjson")).sort()) {
+  const lines = readFileSync(join(root, "examples", name), "utf8").replace(/\n$/, "").split("\n");
+  lines.forEach((line, i) => {
+    let item;
+    try { item = JSON.parse(line); } catch { item = null; }
+    if (item && !Array.isArray(item) && typeof item === "object" && event(item)) { versions.add(item.wdx); console.log(`ok    ${name} line ${i + 1} (wdx ${item.wdx})`); }
+    else { failed++; console.log(`FAIL  ${name} line ${i + 1}`); for (const e of event.errors ?? []) console.log(`      ${e.instancePath || "/"} ${e.message}`); }
+  });
 }
 
 // The examples exactly as published in the v0.1.0 release (tests/v0.1) must still validate.

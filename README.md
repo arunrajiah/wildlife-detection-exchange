@@ -43,7 +43,7 @@ WDX is a small JSON format for a single machine detection event, plus an NDJSON 
 | schema/detection-event.schema.json | JSON Schema (draft 2020-12) for a single detection event, v0.1 to v0.4 |
 | schema/device-status.schema.json | JSON Schema for a device health report (added in v0.2, unchanged since) |
 | MAPPING-DARWIN-CORE.md | Field-by-field mapping to Darwin Core, plus export notes for GBIF and Camtrap DP |
-| examples/ | Real-shaped example events from BirdNET-Pi, a Perch pipeline (wildecho-api), SpeciesNet Studio, a camera-trap model pipeline, a human sighting, a dataset upload (v0.4) and a device status report. Older examples keep their original `wdx` version on purpose, to show they still validate. |
+| examples/ | Real-shaped example events from BirdNET-Pi, a Perch pipeline (wildecho-api), SpeciesNet Studio, a camera-trap model pipeline, a human sighting, a dataset upload (v0.4), a device status report, and an NDJSON batch (`batch.wdx.ndjson`: BirdNET-Go and camera-trap events, with a later re-emit of one event after review, as SPEC section 9 describes). Older examples keep their original `wdx` version on purpose, to show they still validate. |
 | CITATION.cff | Citation metadata |
 | scripts/validate-examples.mjs | `npm install && npm test` validates every example, and the v0.1.0 release examples in tests/v0.1, against the schemas |
 
