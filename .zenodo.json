@@ -1,5 +1,6 @@
 {
-  "upload_type": "dataset",
+  "upload_type": "publication",
+  "publication_type": "technicalnote",
   "title": "Wildlife Detection Exchange (WDX): an open interchange format for AI wildlife detections from community-run sensors",
   "version": "0.4",
   "creators": [
