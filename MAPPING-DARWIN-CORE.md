@@ -45,6 +45,8 @@ This document maps every WDX field with a Darwin Core (DwC) equivalent to its te
 | `dataset.rightsHolder` (v0.4) | `dcterms:rightsHolder` | |
 | `dataset.recordedBy` (v0.4) | `dwc:recordedBy` (and `dwc:recordedByID` for ORCID iDs) | Joined with ` | `. |
 | `dataset.citation` / `doi` (v0.4) | `dcterms:bibliographicCitation` | Also the dataset's EML citation when publishing through an IPT. |
+| `group.groupId` (v0.5, proposed) | `dwc:eventID`, with the deployment as `dwc:parentEventID` | `eventID` = `<deploymentId>/<groupId>` so it stays unique across deployments. Events without a group keep `deploymentId` as `dwc:eventID`. |
+| `group.type` (v0.5, proposed) | `dwc:eventType` | `sequence`, `visit`, `track`, `bout` verbatim. |
 
 ## Export to GBIF
 
@@ -52,4 +54,4 @@ A WDX stream becomes a GBIF-publishable dataset by: (1) filtering out `review.st
 
 ## Relationship to Camtrap DP
 
-For camera trap deployments, a WDX stream aggregates into Camtrap DP as follows: `deployment` fields populate the `deployments` table, `media` entries the `media` table, and each event an `observations` row with `observationType=animal` and `classificationMethod=machine`. WDX adds nothing Camtrap DP cannot hold; it is the per-event wire format upstream of Camtrap DP's per-study package. Acoustic deployments have no Camtrap DP equivalent, which is the gap WDX primarily serves.
+For camera trap deployments, a WDX stream aggregates into Camtrap DP as follows: `deployment` fields populate the `deployments` table, `media` entries the `media` table, and each event an `observations` row with `observationType=animal` and `classificationMethod=machine`. Since v0.5 (proposed), `group.groupId` fills `observations.eventID`, and the group's extent (section 3.1 of the spec) fills `eventStart` and `eventEnd`; each WDX event stays a media-level observation, and a consumer MAY add one event-level observation per group and taxon. WDX adds nothing Camtrap DP cannot hold; it is the per-event wire format upstream of Camtrap DP's per-study package. Acoustic deployments have no Camtrap DP equivalent, which is the gap WDX primarily serves.

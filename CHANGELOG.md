@@ -13,6 +13,13 @@ To use the newer fields, set `"wdx"` to the version that introduced the newest f
 
 Consumers that only read v0.1 fields keep working: no v0.1 field was removed, renamed or given a new meaning. The one relaxation is that `confidence` (any event, v0.3) and `classifier` (human observations only, v0.3) may be missing, so code that reads them must handle their absence.
 
+## 0.5 (proposed, not released)
+
+- `group`: ties events from the same camera-trap sequence, visit, track or bout together (`groupId`, optional `type`), scoped to one deployment of one producing system, with counting, ordering and review rules (SPEC section 3.1). Issue 1, asked for from baited underwater video and drone work.
+- Darwin Core: a grouped event maps to `dwc:eventID` `<deploymentId>/<groupId>` with the deployment as `dwc:parentEventID`; Camtrap DP takes the group as `observations.eventID`.
+- `examples/camera-trap-sequence.json`: one burst with two chital images and a dhole, as three events in one sequence.
+- Backward compatible: every v0.1 to v0.4 event validates against the v0.5 schema.
+
 ## 0.4 (26 November 2026)
 
 - DOI 10.5281/zenodo.24548567.

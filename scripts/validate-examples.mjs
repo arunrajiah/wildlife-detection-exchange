@@ -46,9 +46,14 @@ for (const name of readdirSync(join(root, "tests/v0.1")).filter((f) => f.endsWit
 }
 
 // Guard against a validator that accepts anything: an unknown version must fail.
-const bad = { ...read("examples/birdnet-pi.json"), wdx: "0.5" };
-if (event(bad)) { failed++; console.log("FAIL  an event with wdx 0.5 was accepted"); }
-else console.log("ok    an event with wdx 0.5 is rejected");
+const bad = { ...read("examples/birdnet-pi.json"), wdx: "9.9" };
+if (event(bad)) { failed++; console.log("FAIL  an event with an unknown wdx version was accepted"); }
+else console.log("ok    an event with an unknown wdx version is rejected");
+
+// A group must name its groupId.
+const noId = { ...read("examples/birdnet-pi.json"), wdx: "0.5", group: { type: "visit" } };
+if (event(noId)) { failed++; console.log("FAIL  a group without groupId was accepted"); }
+else console.log("ok    a group without groupId is rejected");
 
 if (!versions.has("0.1")) { failed++; console.log("FAIL  no v0.1 example in examples/"); }
 const enumVersions = read("schema/detection-event.schema.json").properties.wdx.enum;

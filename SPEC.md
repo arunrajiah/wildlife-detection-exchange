@@ -1,6 +1,6 @@
 # Wildlife Detection Exchange (WDX) Specification, v0.4
 
-Version: 0.4 (November 2026). Every v0.1, v0.2 and v0.3 event remains valid under this version.
+Version: 0.4 (November 2026), with the proposed v0.5 `group` (section 3.1). Every v0.1, v0.2 and v0.3 event remains valid under this version.
 
 Status: draft proposal. This version is published to anchor discussion and reference implementations; breaking changes are expected before v1.0.
 
@@ -37,6 +37,36 @@ Producers MUST include the `wdx` version field in every event. Consumers MUST ig
 | `source` | object | MUST | Producing system and its local record id. See section 8. |
 | `license` | string | MAY | SPDX identifier or URL for the data license of this event, e.g. `CC0-1.0`. If omitted, the license is whatever the stream's publisher declares out of band. |
 | `dataset` | object | MAY | *v0.4.* The dataset the event belongs to, so every copy of the event carries its credit. See section 8.1. |
+| `group` | object | MAY | *v0.5, proposed.* Ties this event to other events from the same burst, visit, track or bout. See section 3.1. |
+
+### 3.1 `group` (v0.5, proposed)
+
+Many pipelines emit several events for what a person would call one sighting: each image of a camera-trap burst, each time an animal re-enters a baited underwater video, each frame range of a tracked animal, each call in a bout. `group` says that these events belong together, so a consumer can count, review and display them as one.
+
+| Field | Type | Req | Description |
+|---|---|---|---|
+| `groupId` | string | MUST | Opaque identifier chosen by the producer. |
+| `type` | string | MAY | What holds the group together (below). Omit when unknown. |
+
+Types:
+
+- `sequence`: one trigger or burst of a camera trap. Corresponds to an event in Camtrap DP. It MAY hold several taxa.
+- `visit`: continuous presence at the sensor, including exits and re-entries, as on baited underwater video. It MAY hold several taxa.
+- `track`: one individual followed across frames, images or files. All events in a track MUST have the same taxon unless a later review corrects one.
+- `bout`: a run of calls or songs, from one or more individuals.
+- `other`: any other grouping; describe it in the producer's documentation.
+
+Rules:
+
+1. **Scope.** A `groupId` is unique within one `deployment.deploymentId` of one `source.system`. Consumers MUST compare it only within that scope and MUST NOT merge groups across deployments, even when the strings match. Producers MAY use globally unique values.
+2. **Membership is per event.** An event belongs to at most one group. Events of different taxa MAY share a `sequence` or `visit` group; one image with a chital and a dhole is two events with the same `groupId`.
+3. **Counting.** Consumers that count detections SHOULD count a group at most once per taxon. A `track` is one individual; a `sequence` or `visit` says nothing about how many individuals were present unless `individualCount` is given.
+4. **Order and extent.** There is no member role (`first`, `last`): members are ordered by `eventStart`, then `media.frame` or `media.startOffsetSeconds`. The group's extent is the earliest `eventStart` to the latest `eventEnd` (or `eventStart`) of its members.
+5. **Summaries need no group.** A producer that emits one event per sighting, with `eventStart` and `eventEnd` covering it, does not need `group`. Use it when the members are emitted as separate events.
+6. **Not a trajectory.** `group` carries no geometry, re-identification score or per-frame position beyond each member's own `media.region`. Full tracks belong in a format built for them.
+7. **Changing membership.** When a review splits or merges groups, the producer re-emits the affected events with their new `groupId` (section 9: same `eventId`, later `review.reviewedAt`).
+
+A drone flight, survey transect or recorder session is a deployment, not a group: give it its own `deploymentId` (section 4).
 
 ## 4. `deployment`
 
